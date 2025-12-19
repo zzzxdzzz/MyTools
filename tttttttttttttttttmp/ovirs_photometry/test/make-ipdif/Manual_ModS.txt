@@ -1,0 +1,110 @@
+
+************************************************************************************************************************************************
+**************************************PhotModS Manual*******************************************************************************************
+************************************************************************************************************************************************
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Quick and Dirty Manual for Running PhotModS-- a software to photometrically model Bennu's spectra 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                 (Driss Takir, 01 May 2015-- PhotModS version Build 2.2)
+
+
+The following is a brief description of how to run the PhotModS software written by 
+Driss Takir for OSIRIS-REx SAWG.
+
+
+History:
+-------
+
+Modification history:
+
+Build 1.0
+13 March 2014- v1.0- Original release
+04 April 2014- v2.0 - Delivery of the second version- Added some prompt-user test functions
+01 June 2014- v3.0 - Added some SPOC test routines with John Ivens and Changed the data selection to include phase angle coverage of four stations
+03 September 2014- v4.0- Made some cosmetic changes in preparation to SAWG-SPOC meeting in Tucson
+10 October 2014- v5.0- added more comments to the script
+
+Build 2.1
+25 Junuary 2015- v6.0- added more comments to the script
+Removed all print statements
+Incorporated new test Bennu-like dataset that includes 1400 channels 
+
+Build 2.2
+4/15/2015- Incorporated the new FITS file format :2015_04_SAWG-OVIRS_Data_Formats_V7
+         
+
+
+Bugs/Comments/Suggestions:
+--------------------------
+
+Bugs in the code should be reported to Driss Takir (dtakir@gmail.com) or Beth Clark(dtakir@gmail.com). Comments and/or suggestions regarding this
+instruction page should be directed to Driss Takir(dtakir@gmail.com) or Beth Clark(dtakir@gmail.com).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**********************************This software has been implemented and tested on Mac and Windows platforms*******************************************************
+**************************************To view this manual, type at the command line: PhotModS, 'help'******************************************************
+
+I. Start IDL and change to your working directory- Please make sure that you IDL path is set to ASTRON astronomy library.
+
+II. Before start running PhotModS these files need to be in the working directory:
+
+	 . PhotModS.pro file- the program that has the code to photometrically model spectra of Bennu.
+         . SPDIF.fits- SPDIF: Spectral Photometry Data Information File.  ***This file will be imported from the SPOC repository***      
+         . ASTRON astronomy library     
+         . Manual_Mod.txt file- a file that includes the manual.
+
+
+
+III. Run the program:
+
+***************************VERY IMPORTNAT********************************
+Lommel-Seeliger model must but be run first, ROLO, and then Minnaert
+***********************************************************************
+
+The User can manipulate data selection crieria to optimize the fits (in line 293 of PhotModS.pro)
+
+1. The Lommel-Seeliger model:
+              . At the command line type: PhotModS, 'lommel_seeliger'
+                          - The Modified Lommel-Seeliger model has 4 free parameters. The optimization method used here is MPFIT() (Markwardt 2008).
+                            Initial guess has to made in order to generate the best fit. This guess can be modified to optimize the best fit.
+                          - The  Modified Lommel-Seeliger models plots are generated in the lommel-Seeliger directory for each wavelength under: Bennu_Lommel_Seeliger_fit wavelengths				    (nm).ps (goodness of fit)      
+                          - The Lommel-Seeliger fits vs. viewing geometry plots are generated in the Lommel_seeliger directory for each wavelength under: 				                            Bennu_Lommel_Seeliger_Viewing_geometry (nm).ps (check for any systematic bias of illumination)
+                          - Lommel-Seeliger paramters will be written in a FITS file under the first extension: Bennu_Model_Parameters.fits
+
+2. ROLO Model:
+	      . At the command line type: PhotModS, 'Rolo'
+                          - The ROLO model was adopted from Buratti et al.(2011). This model has 7 free parameters. The optimization method used here is MPFIT() (Markwardt 2008).
+                            Initial guess has to made in order to generate the best fit. This guess can be modified to optimize the best fit.
+                          - The ROLO models plots are generated in the ROLO directory for each wavelength under: Bennu_Rolo_fit_wavelengths(nm).ps (goodness of fit).
+                          - The ROLO fits vs. viewing geometry plots are generated in the ROLO directory for each wavelength under: Bennu_Rolo_Viewing_geometry (nm).ps (check for 				    any systematic bias of illumination).
+                          - ROLO paramters will be written in a FITS file under the second extension: Bennu_Model_Parameters.fits
+     
+3. The Modified Minnaert Model:
+                 . At the command line type: PhotModS, 'minnaert'
+                          - The Minnaert model has 6 free parameters. The optimization method used here is MPFIT() (Markwardt 2008).
+                          - Initial guess has to made in order to generate the best fit. This guess can be modified to optimize the best fit.
+                          - The Minnaert models plots are generated in the m_minnaert directory for each wavelength under: Bennu_m_minnaert_wavelengths(nm).ps
+                          - The Minnaert fits vs. viewing geometry plots are generated in the minnaert directory for each wavelength under: Bennu_m_minnaert_fit wavelengths(nm).ps
+                          - Minnaert paramters will be written in a FITS file under the third extension: Bennu_Model_Parameters.fits
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   

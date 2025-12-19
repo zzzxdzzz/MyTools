@@ -1,0 +1,98 @@
+n_ext,2,Number of extensions
+1,extension index,extension index
+Comment,Mission Information,Mission Information
+MISSION,OSIRIS-REx,Mission: OSIRIS-REx
+HOSTNAME,OREX,PDS Terminology
+INSTRUM,OVIRS,Instrument: OSIRIS-REx Visible Infrared Spectrometer
+TARGET,101955 BENNU,Target Object
+ORIGIN,SPOC,University of Arizona Science Processing and Operations Center
+Comment,Observation Information,Observation Information
+MPHASE,Detailed Survey,Mission Phase
+ACTIVITY,Instrument Data Collection,Activity is equivalent to PDS4 'Primary Results Summary'
+ATLTGTID,%s,ATL Target  ID (Target spacecraft is moving toward?)
+SCISEQID,%s,Instrument_Phase_Activity_Description_Rev
+SEQDESC,%s,From Description field of Science Sequence ID
+OBSID,%s,From Telemetry
+Comment,Timing Information,Timing Information
+OBSSTART,%s,Observation sequence start time
+OBSEND,%s,Observation sequence end time.
+SCLKSTRT,%s,Observation sequence start partition/TICKS
+SCLKEND,%s,Observation sequence end partition/TICKS
+Comment,Albedo Processing Information,Albedo Processing Information
+SPECTYP,BOND,Bolometric Bond albedo
+IN_FILE,%s,Name of input file
+MNBEST,%s,"Best Fit Model Name (Lommel-Seeliger, ROLO, Minnaert, McEwen)"
+PHTMODFL,%s,Name of photometric model parameter file
+SOLRSPEC,%s,Name of solar spectrum input file
+BA_SW,%s,Bond Albedo Software
+BA_VER,%s,Bond Albedo Software Version
+IDL_VER,%s,IDL version used by Bond Albedo Software
+OS_NAME,%s,OS Version used by  Bond Albedo Software
+SYSARCH,%s,System architecture used by Bond Albedo Software
+2,extension index,extension index
+XTENSION,BINTABLE,Binary Table Extension
+EXTNAME,METADATA_AND_BOND_ALB,Extension name
+TFIELDS,20,Number of fields in each row
+TTYPE1,SCLK,mid-exposure sclk time of frame in #/SSSSSSSSSS.sssss format
+TFORM1,20A,data format of field: 20 ASCII characters
+TUNIT1,NA,physical unit of field
+TTYPE2,BS_FLAG,Boresight flag 0-not intersect asteroid surface; 1-intersects
+TFORM2,B,data format of field: 1 Unsigned byte
+TUNIT2,NA,physical unit of field
+TTYPE3,FOV_FLAG,Field of view flag 0-Entire FOV images empty space; 1-Entire FOV images asteroid surface; 2-Portion of FOV images empty space.
+TFORM3,B,data format of field: 1 Unsigned byte
+TUNIT3,NA,physical unit of field
+TTYPE4,BS_ANGLE,Angle between boresight and origin of Bennu in planetocentric Cartesian coordinates
+TFORM4,D,data format of field: 8-byte DOUBLE
+TUNIT4,deg,physical unit of  field
+TTYPE5,LAT,"Latitude of boresight intersection with the surface. Allowed range +90.0 to -90.0. If Boresight Flag NE 1, then value shall be 0.0."
+TFORM5,D,data format of field: 8-byte DOUBLE
+TUNIT5,deg,physical unit of  field
+TTYPE6,LON,"Longitude of boresight intersection with the surface. Allowed range +180.0 to -180.0. If Boresight Flag NE 1, then value shall be 0.0."
+TFORM6,D,data format of field: 8-byte DOUBLE
+TUNIT6,deg,physical unit of field
+TTYPE7,RANGE,"Range from spacecraft to the closest boresight intersection to spacecraft. Must be positive number . If Boresight Flag NE 1, then value shall be 0.0."
+TFORM7,D,data format of field: 8-byte DOUBLE
+TUNIT7,km,physical unit of f field
+TTYPE8,BS_X,"X coordinate of boresight intersection with surface in planetocentric Cartesian coordinates. Allowed range 0 to 1000.0. If Boresight Flag NE 1, then value shall be 0.0."
+TFORM8,D,data format of field: 8-byte DOUBLE
+TUNIT8,m,physical unit of field
+TTYPE9,BS_Y,"Y coordinate of boresight intersection with surface in planetocentric Cartesian coordinates. Allowed range 0 to 1000.0. If Boresight Flag NE 1, then value shall be 0.0."
+TFORM9,D,data format of field: 8-byte DOUBLE
+TUNIT9,m,physical unit of field
+TTYPE10,BS_Z,"z coordinate of boresight intersection with surface in planetocentric Cartesian coordinates. Allowed range 0 to 1000.0. If Boresight Flag NE 1, then value shall be 0.0."
+TFORM10,D,data format of field: 8-byte DOUBLE
+TUNIT10,m,physical unit of field
+TTYPE11,INCIDANG,"Incidence angle. The angle between the vector normal to the surface at the location of the boresight intersection with the surface and the vector pointing at the Sun. If Boresight Flag NE 1, then value shall be 0.0. Allowed range is 0.0 to 90.0."
+TFORM11,D,data format of field: 8-byte DOUBLE
+TUNIT11,deg,physical unit of field
+TTYPE12,EMISSANG,"Emission angle. The angle between the vector normal to the surface at the location of the boresight intersection with the surface and the vector pointing to the Spacecraft. If Boresight Flag NE 1, then value shall be 0.0. Allowed range is 0.0 to 90.0"
+TFORM12,D,data format of field: 8-byte DOUBLE
+TUNIT12,deg,physical unit of field
+TTYPE13,PHASEANG,"Phase Angle. The angle between the vector pointing to the Sun and the vector pointing to the Spacecraft. If Boresight Flag NE 1, then value shall be 0.0. Allowed range is 0.0 to 180.0"
+TFORM13,D,data format of field: 8-byte DOUBLE
+TUNIT13,deg,physical unit of field
+TTYPE14,FILL_FAC,"Fill Factor. If FOV Flag = 2, describes the fraction of the FOV that intersects the asteroid surface. If FOV Flag = 0, value shall be 0.0. If FOV Flag = 1, value shall be 1.0. Allowed range is 0.0 to 1.0."
+TFORM14,D,data format of field: 8-byte DOUBLE
+TUNIT14,NA,physical unit of  field
+TTYPE15,SMJAX,"The length of the semimajor axis of the FOV ellipse projected to the shape model. If Boresight Flag or FOV Flag NE 1, then value shall be 0.0."
+TFORM15,D,data format of field: 8-byte DOUBLE
+TUNIT15,m,physical unit of field
+TTYPE16,SMNAX,"The length of the semiminor axis of the FOV ellipse projected to the shape model. If Boresight Flag or FOV Flag NE 1, then value shall be 0.0."
+TFORM16,D,data format of field: 8-byte DOUBLE
+TUNIT16,m,physical unit of field
+TTYPE17,SUN_RNG,Range from Sun to center of Bennu
+TFORM17,D,data format of field: 8-byte DOUBLE
+TUNIT17,km,physical unit of field
+TTYPE18,ET,Ephemeris time
+TFORM18,D,data format of field: 8-byte DOUBLE
+TUNIT18,second,physical unit of field
+TTYPE19,TARGRNG,Target center distance to s/c
+TFORM19,D,data format of field: 8-byte DOUBLE
+TUNIT19,km,physical unit of field
+TTYPE20,BOND_ALBEDO,Bolometric Bond albedo
+TFORM20,E,data format of field: 4-byte FLOAT
+TUNIT20,NA,physical unit of field
+TTYPE21,BOND_ALBEDO_ERROR,Uncertainty of bolometric Bond albedo
+TFORM21,E,data format of field: 4-byte FLOAT
+TUNIT21,NA,physical unit of field

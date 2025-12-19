@@ -1,0 +1,47 @@
+#!/bin/tcsh
+
+echo
+echo
+echo '============================================================='
+echo '|         OVIRS Photometry Software Package Testing         |'
+echo '============================================================='
+echo
+echo
+
+# set environment to run on SPOC VM
+set h="`uname -n`"
+set os = "`uname -s`"
+set a = "`uname -p`"
+set k = "`uname -r`"
+echo 'Host = '$h
+echo 'Processor = '$a
+echo 'OS = '$os
+echo 'Kernel = '$k
+if ($h =~ '*lpl.arizona.edu') then
+  setenv IDL_PATH "<IDL_DEFAULT>:+.:+/usr/local/exelis/addons/astron"
+endif
+
+# prepare test directory
+if (! -d "test/temp") then
+  mkdir "test/temp"
+endif
+
+# run IDL test script
+echo
+echo 'Run IDL test script'
+echo
+idl -quiet -e test_phot
+set s = $?
+echo
+echo
+if ($s == 100) then
+  echo 'All programs completed successfully, but at least one output file does not match the comparison file'
+else if ($s != 0) then
+  echo 'Test FAILED with code '$s
+else
+  echo 'Test completed and successful'
+  if (-d "temp") then
+    \rm -rf temp/*
+  endif
+endif
+echo
