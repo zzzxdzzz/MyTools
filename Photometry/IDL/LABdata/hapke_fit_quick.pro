@@ -1,5 +1,6 @@
 pro hapke_fit_quick, csvfile
   compile_opt idl2
+  
 
   ; --- Basic file check ---
   if file_test(csvfile, /regular) eq 0 then message, 'CSV not found: ' + csvfile
@@ -33,12 +34,16 @@ pro hapke_fit_quick, csvfile
     if n_elements(parts) lt 4 then continue
 
     ; Skip header-like rows (non-numeric first column)
-    x0 = double(parts[0], /convert_all)
+    x0 = double(parts[0])
     if finite(x0) eq 0 then continue
 
-    x1 = double(parts[1], /convert_all)
-    x2 = double(parts[2], /convert_all)
-    x3 = double(parts[3], /convert_all)
+    x1 = double(parts[1])
+    x2 = double(parts[2])
+    x3 = double(parts[3])
+if (finite(x1) eq 0) or (finite(x2) eq 0) or (finite(x3) eq 0) then continue
+
+if (finite(x1) eq 0) or (finite(x2) eq 0) or (finite(x3) eq 0) then continue
+
     if (finite(x1) eq 0) or (finite(x2) eq 0) or (finite(x3) eq 0) then continue
 
     ibL.add, x0
@@ -75,7 +80,7 @@ pro hapke_fit_quick, csvfile
           [1.d, 1.d, 0.01d, -0.48d, 60.d]]
 
   ; --- Fit Hapke model ---
-  parms = fitr_hapke(ib, eb, ab, rb, limits=limi, /plot)
+  parms = fitr_hapke(ib, eb, ab, rb, limits=limi)
 
   ; --- Output ---
   print, parms
