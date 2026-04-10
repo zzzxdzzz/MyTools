@@ -1,0 +1,56 @@
+Hapke Model Fitting Results — iear.csv
+=================================================================
+Data: N=21 points, principal plane, emission=60°, phase=20°–120°
+I/F: 0.052350 – 0.087994  (mean=0.068975)
+
+Model: Hapke (2002) 5-parameter bidirectional reflectance
+  BDR = rfunc_hapke(w, g, b0, h, θ̄, i, e, α)
+  I/F = BDR × π  [mpfit_photofunc.pro convention]
+  Residuals: iof − BDR·π
+  Parameter order: [w, B0, h, g, θ̄]
+
+─────────────────────────────────────────────────────────────────
+RUN A  —  Exact limi from fit_hapke_from_csv.pro (user file)
+  limi = [[0, 1, 0.01, −0.48, 0], [1, 1, 0.01, −0.48, 60]]
+  B0=1.0, h=0.01, g=−0.48 FIXED; only w∈[0,1] and θ̄∈[0,60°] free
+─────────────────────────────────────────────────────────────────
+  w   = 0.2067
+  B0  = 1.0000  [FIXED]
+  h   = 0.0100  [FIXED]
+  g   = -0.4800  [FIXED]
+  θ̄   = 0.00°
+  RMS = 47.81%  (dof=19)
+  NOTE: Large RMS is expected — with B0=1, h=0.01, g=−0.48 fixed,
+  the SHOE is negligible (B≈0) at phase>20° and the fixed phase
+  function shape cannot reproduce the observed angular trend.
+
+─────────────────────────────────────────────────────────────────
+RUN B  —  IDL fitr_hapke.pro default limits, all 5 parameters free
+  limi = [[0, 0, 0, −1, 0], [1, 10, 1, 1, 60]]
+─────────────────────────────────────────────────────────────────
+  w   = 0.1619
+  B0  = 7.0463  ← exceeds physical limit (B0>1); data lacks near-opposition
+  h   = 0.2651
+  g   = 0.1387
+  θ̄   = 5.08°
+  RMS = 1.90%  (dof=16)
+
+─────────────────────────────────────────────────────────────────
+RUN C  —  Physical bounds (B0≤1), all 5 free
+  limi = [[0, 0, 0, −1, 0], [1, 1, 1, 1, 60]]
+─────────────────────────────────────────────────────────────────
+  w   = 0.2929
+  B0  = 1.0000
+  h   = 0.1743
+  g   = -0.0358
+  θ̄   = 1.22°
+  RMS = 4.22%  (dof=16)
+
+─────────────────────────────────────────────────────────────────
+IMPORTANT CAVEATS:
+  • Phase angles cover 20°–120° only — no opposition data (<20°).
+  • B0 and h are degenerate without near-opposition photometry.
+  • B0>>1 in Run B is numerically acceptable but unphysical.
+  • RUN C is the physically constrained best fit (B0≤1).
+  • Run A reproduces what fit_hapke_from_csv.pro does as written.
+─────────────────────────────────────────────────────────────────
